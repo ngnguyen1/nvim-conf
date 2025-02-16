@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.opt.cursorline = true
 
@@ -22,4 +22,5 @@ vim.opt.termguicolors = true
 vim.opt.splitright = true
 
 -- Line numbers
-vim.wo.number = true
+vim.opt.number = true
+vim.opt.relativenumber = true
