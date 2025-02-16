@@ -2,6 +2,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local catppuccin = require("catppuccin.palettes").get_palette("mocha")
 		local function copilot_status()
 			if vim.fn["copilot#Enabled"]() == 1 then
 				return " "
@@ -9,60 +10,134 @@ return {
 				return " "
 			end
 		end
+
+		local custom_neotree = {
+			sections = {
+				lualine_a = {
+					{ "branch", icon = { "" }, separator = { right = "" } },
+				},
+				lualine_b = {
+					{
+						function()
+							return "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+						end,
+						color = { fg = catppuccin.blue, gui = "bold" }, -- Blue folder name
+						separator = { right = "" },
+					},
+				},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
+			filetypes = { "neo-tree" },
+		}
+
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "catppuccin", -- dracula
+				theme = "catppuccin-mocha",
 				globalstatus = true,
-				-- component_separators = { left = "", right = "" }, -- Between components
-				--     section_separators = { left = "", right = "" }, -- Bubble-style sections
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
-				-- section_separators = { left = "", right = "" },
-				-- component_separators = '',
-				-- section_separators = { right = "", left = "" }, -- Between sections
+				component_separators = "",
+				-- section_separators = { left = "", right = "" }, -- Bubble-style sections
+				-- component_separators = { left = "", right = "" },
+				-- section_separators = { right = "", left = "" }, -- slant-style sections
 			},
+
 			sections = {
-				lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
+				lualine_a = {
+					{
+						"mode",
+						separator = { right = "" },
+						fmt = function(str)
+							return " " .. str
+						end,
+					},
+				},
+
 				lualine_b = {
 					{
-						"filename",
-						symbols = { modified = " ●", readonly = " ", unnamed = "[No Name]" },
+						"branch",
+						icon = { "" },
+						separator = { right = "" },
 					},
-					{ "branch" },
+					{
+						"diff",
+						separator = { right = "" },
+						symbols = { added = " ", modified = " ", removed = " " },
+					},
 				},
 				lualine_c = {
 					"%=", --[[ add your center compoentnts here in place of this comment ]]
-					-- {
-					-- 	"filename",
-					-- 	path = 4, -- Show relative path
-					-- },
+					{
+						"buffers",
+						show_filename_only = true,
+						hide_filename_extension = false,
+						show_modified_status = true,
+
+						mode = 0, -- 0: Shows buffer name
+						-- 1: Shows buffer index
+						-- 2: Shows buffer name + buffer index
+						-- 3: Shows buffer number
+						-- 4: Shows buffer name + buffer number
+						filetype_names = {
+							TelescopePrompt = "Telescope",
+							fzf = "FZF",
+						},
+						-- use_mode_colors = false,
+
+						buffers_color = {
+							-- active = { fg = "#ffffff", bg = "#ff79c6", gui = "bold" }, -- Active buffer: White text, Pink background
+							-- inactive = { fg = "#bfbfbf", bg = "#44475a" }, -- Inactive buffer: Grey text, Dark background
+							active = { fg = catppuccin.blue, bg = catppuccin.surface1, gui = "italic,underline" },
+							inactive = { fg = catppuccin.overlay1, bg = catppuccin.mantle },
+						},
+
+						max_length = vim.o.columns * 2 / 3,
+						symbols = {
+							modified = " ●",
+							alternate_file = "󰈔 ",
+							directory = "",
+							readonly = " ",
+							unnamed = "[No Name]",
+						},
+						separator = { left = "", right = "" },
+					},
 				},
-				lualine_x = { "diagnostics" },
-				lualine_y = { "filetype", "progress", copilot_status },
+				lualine_x = {
+					{
+						"diagnostics",
+						symbols = {
+							error = " ", -- Error icon
+							warn = " ", -- Warning icon
+							hint = " ", -- Hint icon
+							info = " ", -- Info icon
+						},
+						colored = true, -- Displays diagnostics status in color if set to true.
+						update_in_insert = false, -- Update diagnostics in insert mode.
+						always_visible = false, -- Show diagnostics even if there are none.
+					},
+				},
+				lualine_y = {
+					{
+						"encoding",
+						fmt = function(str)
+							return string.upper(str)
+						end,
+						separator = { left = "" },
+					},
+					{
+						"filetype",
+						colored = true,
+						icon_only = true,
+						separator = { left = "" },
+					},
+					copilot_status,
+				},
 				lualine_z = {
-					{ "location", separator = { left = "", right = "" }, left_padding = 2 },
+					{ "progress", separator = { left = "" } },
+					{ "location" },
 				},
-				-- lualine_a = { { "mode", separator = { left = "", right = "" } } },
-				-- -- lualine_b = { "branch", "diff", "diagnostics" },
-				-- lualine_b = {
-				-- 	{ "branch", separator = { left = "", right = "" } },
-				-- 	{ "diff", separator = { left = "", right = "" } },
-				-- },
-				-- lualine_c = {
-				-- 	{
-				-- 		"filename",
-				-- 		path = 1, -- Show relative path
-				-- 		symbols = { modified = " ●", readonly = " ", unnamed = "[No Name]" },
-				-- 	},
-				-- },
-				-- lualine_x = {
-				-- 	"encoding",
-				-- 	"fileformat",
-				-- 	{ "filetype", separator = { left = "", right = "" } },
-				-- },
-				-- lualine_y = { { "progress", separator = { left = "", right = "" } } },
-				-- lualine_z = { { "location", separator = { left = "", right = "" } } },
 			},
 			inactive_sections = {
 				lualine_a = { "filename" },
@@ -72,8 +147,9 @@ return {
 				lualine_y = {},
 				lualine_z = { "location" },
 			},
-			tabline = {},
-			extensions = {},
+			extensions = {
+				custom_neotree,
+			},
 		})
 	end,
 }
