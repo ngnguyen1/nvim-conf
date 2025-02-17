@@ -2,7 +2,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local catppuccin = require("catppuccin.palettes").get_palette("mocha")
+		local catppuccin = require("catppuccin.palettes").get_palette()
 		local function copilot_status()
 			if vim.fn["copilot#Enabled"]() == 1 then
 				return " "
@@ -36,7 +36,7 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "catppuccin-mocha",
+				theme = "catppuccin",
 				globalstatus = true,
 				component_separators = "",
 				-- section_separators = { left = "", right = "" }, -- Bubble-style sections

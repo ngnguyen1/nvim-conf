@@ -10,10 +10,10 @@ return {
 				treesitter = true,
 				neotree = true,
 				telescope = true,
-        which_key = true,
-        copilot_vim = true,
+				which_key = true,
+				copilot_vim = true,
 			},
 		})
-		vim.cmd.colorscheme("catppuccin-mocha")
+		vim.cmd.colorscheme("catppuccin")
 	end,
 }
