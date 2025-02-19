@@ -20,6 +20,7 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.termguicolors = true
 vim.opt.splitright = true
+vim.opt.colorcolumn = "78"
 
 -- Line numbers
 vim.opt.number = true
@@ -27,4 +28,3 @@ vim.opt.relativenumber = true
 
 -- scroll
 vim.opt.scrolloff = 10
-vim.opt.scroll = 50
