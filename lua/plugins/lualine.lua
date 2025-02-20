@@ -4,6 +4,7 @@ return {
 	config = function()
 		local catppuccin = require("catppuccin.palettes").get_palette()
 		local function copilot_status()
+			-- local status = vim.cmd("Copilot status")
 			if vim.fn["copilot#Enabled"]() == 1 then
 				return " "
 			else
