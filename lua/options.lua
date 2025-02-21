@@ -28,3 +28,6 @@ vim.opt.relativenumber = true
 
 -- scroll
 vim.opt.scrolloff = 10
+
+vim.o.grepprg = "rg --vimgrep"
+vim.o.grepformat = "%f:%l:%c:%m" -- filename:line:column:message

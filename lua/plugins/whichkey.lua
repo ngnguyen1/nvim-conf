@@ -54,8 +54,8 @@ return {
 			{ "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename Symbol" },
 			{ "<leader>lg", group = "+GoTo" },
 			{ "<leader>lgd", "<cmd>Telescope lsp_definitions<cr>", desc = "Go to Definition" },
-      { "<leader>lgi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to Implementation" },
-      { "<leader>lgr", "<cmd>Telescope lsp_references<cr>", desc = "Find References" },
+			{ "<leader>lgi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to Implementation" },
+			{ "<leader>lgr", "<cmd>Telescope lsp_references<cr>", desc = "Find References" },
 			{ "<leader>lgD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Go to Declaration" },
 			{ "<leader>lgt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to Type Definition" },
 
@@ -103,7 +103,7 @@ return {
 
 			-- Search
 			{ "<leader>s", group = "+Search" },
-			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+			{ "<leader>sg", "<cmd>FzfLua live_grep<cr>", desc = "Live Grep" },
 			{ "<leader>sm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Search Keymaps" },
 
@@ -141,22 +141,13 @@ return {
 				desc = "Git toggle blame line",
 			},
 
-			-- Session management
-			{
-				{ "<leader>S", group = "+Session" },
-				{ "<leader>Ss", "<cmd>SessionSave<cr>", desc = "Save session" },
-				{ "<leader>SR", "<cmd>SessionRestore<cr>", desc = "Restore session" },
-				{
-					"<leader>Sr",
-					function()
-						require("auto-session.session-lens").search_session()
-					end,
-					desc = "Load session",
-				},
-				{ "<leader>Sd", "<cmd>SessionDelete<cr>", desc = "Delete session" },
-			},
-
 			-- Misc
+			{
+				mode = { "n" },
+				"<leader>/",
+				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
+				desc = "Search keyword in buffer",
+			},
 			{
 				"<C-e>",
 				"<cmd>Neotree toggle<cr>",

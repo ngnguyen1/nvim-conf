@@ -11,3 +11,6 @@ vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", { desc = "Move left" })
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", { desc = "Move right" })
 
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "no hlsearch" })
+
+vim.keymap.set("n", "<C-n>", ":cnext<CR>", { silent = true })
+vim.keymap.set("n", "<C-p>", ":cprev<CR>", { silent = true })

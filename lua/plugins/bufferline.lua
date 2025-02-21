@@ -9,7 +9,6 @@ return {
 				mode = "tabs",
 				numbers = "none",
 				separator_style = "thick", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
-				-- separator_style = { " ", " " },
 				diagnostics = "nvim_lsp",
 				diagnostics_indicator = function(count, level)
 					local icon = level:match("error") and " " or " "

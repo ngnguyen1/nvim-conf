@@ -9,11 +9,10 @@ return {
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {
 			window = {
-				layout = "vertical", -- Options: "horizontal", "vertical", "float"
+				layout = "vertical", -- "horizontal", "vertical", "float"
 				width = 0.25, -- 20% of editor width
 			},
 		},
-		-- See Commands section for default commands if you want to lazy load on them
 	},
 	{
 		"L3MON4D3/LuaSnip",
