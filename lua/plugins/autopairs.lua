@@ -5,9 +5,13 @@ return {
   opts = {
     check_ts = true,
     ts_config = {
-      lua = { "string" },
-      javascript = { "template_string" },
-      typescript = { "template_string" },
+      lua = { "string", "source" },
+      javascript = { "string", "template_string" },
+      typescript = { "string", "template_string" },
+    },
+    disable_filetype = { "TelescopePrompt", "snacks_picker_input" }, -- :echo &ft to find value for this table
+    fast_wrap = {
+      chars = { '{', '[', '(', '"', "'" },
     },
   },
 }
