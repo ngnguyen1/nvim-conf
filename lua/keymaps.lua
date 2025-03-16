@@ -21,12 +21,6 @@ vim.keymap.set("n", "<Leader>ud", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle [D]iagnostics" })
 
--- Navigate vim panes better
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>", { desc = "Move up" })
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>", { desc = "Move down" })
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", { desc = "Move left" })
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", { desc = "Move right" })
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
