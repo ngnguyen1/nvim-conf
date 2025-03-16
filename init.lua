@@ -25,7 +25,7 @@ require("lazy").setup({
     -- import your plugins
     { import = "plugins" },
   },
-  checker = { enabled = true },
+  checker = { enabled = false },
   ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
