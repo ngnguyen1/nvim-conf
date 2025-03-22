@@ -17,6 +17,7 @@ return {
       "xml",
       "terraform",
       "hcl",
+      "groovy",
     },
     auto_install = true,
     highlight = { enable = true },

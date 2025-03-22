@@ -39,8 +39,6 @@ return {
       -- -- LSP
       -- -- { mode = "n", prefix = "<leader>", noremap = true, silent = true },
       { "<leader>l",  group = "[L]SP" },
-      -- Copilot
-      { "<leader>C",  group = "+Copilot" },
       -- File operations
       { "<leader>f",  group = "[F]ind" },
       -- { "<leader>fd", "<cmd>!rm %<cr>", desc = "Delete Current File" },
@@ -87,11 +85,9 @@ return {
         mode = { "n", "v" }, -- NORMAL and VISUAL mode
         { "<leader>Q", "<cmd>q<cr>", desc = "[Q]uit" },
       },
-      {
-        mode = { "v" },
-        { "J", ":m '>+1<cr>gv=gv", desc = "Move line down" },
-        { "K", ":m '<-2<cr>gv=gv", desc = "Move line up" },
-      },
+      -- AI - Copilot
+      { "<leader>C",  group = "+Copilot" },
+      { "<leader>a", group = "ai" },
     })
   end,
 }

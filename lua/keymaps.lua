@@ -16,6 +16,9 @@ vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
 vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
+vim.keymap.set({ "v" }, "<M-Up>", ":m '<-2<cr>gv=gv", { noremap = true, desc = "Move line up" })
+vim.keymap.set({ "v" }, "<M-Down>", ":m '>+1<cr>gv=gv", { noremap = true, desc = "Move line down" })
+
 -- Toggle diagnostic view
 vim.keymap.set("n", "<Leader>ud", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
