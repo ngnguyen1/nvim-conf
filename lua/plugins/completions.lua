@@ -1,10 +1,12 @@
 return {
   {
     "github/copilot.vim",
+    event = "VeryLazy",
     config = function()
       -- enable copilot for specific filetypes
       vim.g.copilot_filetypes = {
         ["TelescopePrompt"] = false,
+        ["snacks_picker_input"] = false,
       }
 
       -- Set to true to assume that copilot is already mapped
@@ -44,15 +46,23 @@ return {
       "hrsh7th/cmp-nvim-lsp", -- LSP source
       "hrsh7th/cmp-buffer",   -- Buffer words
       "hrsh7th/cmp-path",     -- File system paths
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     },
     config = function()
       local cmp = require("cmp")
+      local tailwindcss_colorizer_cmp = require("tailwindcss-colorizer-cmp").formatter
       require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+          end,
+        },
+        formatting = {
+          format = function(entry, vim_item)
+            vim_item = tailwindcss_colorizer_cmp(entry, vim_item)
+            return vim_item
           end,
         },
         window = {

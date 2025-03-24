@@ -10,7 +10,7 @@ return {
     lazy = false,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "terraformls", "volar" },
+        ensure_installed = { "lua_ls", "ts_ls", "terraformls", "volar", "tailwindcss" },
       })
     end,
   },
@@ -22,6 +22,7 @@ return {
           .. "/node_modules/@vue/language-server"
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({})
+      lspconfig.tailwindcss.setup({})
       lspconfig.ts_ls.setup({
         init_options = {
           plugins = {

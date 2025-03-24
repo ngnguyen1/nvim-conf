@@ -1,5 +1,7 @@
 -- Open parent directory of current file
 vim.keymap.set("n", "-", "<CMD>Neotree float<CR>", { desc = "File Explorer" })
+vim.keymap.set("n", "<leader>e", "<CMD>Neotree toggle<CR>", { desc = "File Explorer" })
+
 
 -- Show current diagnostic in a float
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show Diagnostic" })
@@ -9,6 +11,12 @@ vim.keymap.set({ "n", "v" },
     require("conform").format({ async = true, lsp_format = "fallback" })
   end,
   { desc = "[C]ode [F]ormat" })
+
+-- Navigate vim panes better
+vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
+vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
+vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
 -- Tab/Shift-Tab to indent/unindent
 vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true })

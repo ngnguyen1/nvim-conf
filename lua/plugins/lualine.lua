@@ -6,9 +6,9 @@ return {
     local function copilot_status()
       -- local status = vim.cmd("Copilot status")
       if vim.fn["copilot#Enabled"]() == 1 then
-        return " "
+        return ""
       else
-        return " "
+        return ""
       end
     end
 

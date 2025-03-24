@@ -45,6 +45,6 @@ require("lazy").setup({
   },
 })
 
-require("options")
-require("keymaps")
-require("lastpos")
+require("config.options")
+require("config.keymaps")
+require("config.lastpos")

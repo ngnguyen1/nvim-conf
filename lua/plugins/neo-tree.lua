@@ -11,12 +11,26 @@ return {
     window = {
       position = "right",
       mappings = {
-        ["Y"] = "none",
+        ["J"] = function(state)
+          local tree = state.tree
+          local node = tree:get_node()
+          local siblings = tree:get_nodes(node:get_parent_id())
+          local renderer = require("neo-tree.ui.renderer")
+          renderer.focus_node(state, siblings[#siblings]:get_id())
+        end,
+        ["K"] = function(state)
+          local tree = state.tree
+          local node = tree:get_node()
+          local siblings = tree:get_nodes(node:get_parent_id())
+          local renderer = require("neo-tree.ui.renderer")
+          renderer.focus_node(state, siblings[1]:get_id())
+        end,
       },
     },
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
+        hide_gitignored = false,
         hide_by_name = {
           ".git",
           ".DS_Store",
