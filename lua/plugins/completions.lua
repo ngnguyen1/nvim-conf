@@ -2,6 +2,7 @@ return {
   {
     "github/copilot.vim",
     event = "VeryLazy",
+    version = "1.44.0",
     config = function()
       -- enable copilot for specific filetypes
       vim.g.copilot_filetypes = {

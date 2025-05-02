@@ -14,6 +14,6 @@ return {
 				copilot_vim = true,
 			},
 		})
-		vim.cmd.colorscheme("catppuccin")
+		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
 }

@@ -1,5 +1,29 @@
 vim.opt.cursorline = true
 
+-- Set the default file type to groovy for Jenkinsfile.cbs
+vim.filetype.add({
+  pattern = {
+    [".*%.cbs"] = "groovy",
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "java", "groovy", "c", "cpp" },
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.softtabstop = 4
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"snacks_dashboard", "plaintext"},  -- Add more filetypes here
+  callback = function()
+    require('ufo').setup({ provider_selector = function() return '' end })  -- Disable nvim-ufo
+  end,
+})
+
 -- use spaces for tabs and whatnot
 vim.opt.tabstop = 2      -- Defines how many spaces a tab character represents.
 vim.opt.softtabstop = 2
@@ -23,6 +47,11 @@ vim.opt.splitright = true
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- Set default folding to open all folds when a file is opened
+vim.opt.foldmethod = 'manual' -- Disable automatic folding
+vim.opt.foldlevel = 99        -- Open all folds by default
+
 
 -- scroll
 vim.opt.scrolloff = 10

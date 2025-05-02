@@ -31,7 +31,8 @@ return {
       answer_header = "## Copilot ",
       error_header = "## Error ",
       prompts = prompts,
-      -- model = "claude-3.7-sonnet",
+      model = "claude-3.7-sonnet",
+      -- model = "claude-3.7-sonnet-thought",
       mappings = {
         -- Use tab for completion
         complete = {
@@ -64,8 +65,10 @@ return {
         },
       },
       window = {
-        layout = "vertical", -- "horizontal", "vertical", "float"
-        width = 0.33,        -- 20% of editor width
+        -- "horizontal", "vertical", "float"
+        layout = "vertical",
+        -- 20% of editor width
+        width = 0.33,
       },
     },
     config = function(_, opts)

@@ -1,7 +1,9 @@
 -- Open parent directory of current file
-vim.keymap.set("n", "-", "<CMD>Neotree float<CR>", { desc = "File Explorer" })
+vim.keymap.set("n", "<leader>-", "<CMD>Neotree float<CR>", { desc = "File Explorer" })
 vim.keymap.set("n", "<leader>e", "<CMD>Neotree toggle<CR>", { desc = "File Explorer" })
 
+-- colorscheme picker
+-- vim.keymap.set("n", "<C-n>", ":Telescope colorscheme<CR>", { noremap = true, desc = "Select colorscheme" })
 
 -- Show current diagnostic in a float
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show Diagnostic" })
@@ -21,16 +23,44 @@ vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 -- Tab/Shift-Tab to indent/unindent
 vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true })
 vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
-vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
-vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("i", "<Tab>", function()
+    return vim.fn.pumvisible() == 1 and "<C-n>"
+        or vim.fn.col('.') > 1 and "<C-t>"
+        or "<Tab>"
+end, { expr = true, noremap = true, silent = true })
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { noremap = true, silent = true })
 
-vim.keymap.set({ "v" }, "<M-Up>", ":m '<-2<cr>gv=gv", { noremap = true, desc = "Move line up" })
-vim.keymap.set({ "v" }, "<M-Down>", ":m '>+1<cr>gv=gv", { noremap = true, desc = "Move line down" })
+-- Move line up/down in Normal Mode (VSCode style: Alt+Up, Alt+Down)
+vim.keymap.set("n", "J", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "K", ":m .-2<CR>==", { noremap = true, silent = true })
+
+-- Move selected block up/down in Visual Mode (Alt+Up, Alt+Down)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- Ensure vim-visual-multi is properly set up
+vim.api.nvim_exec([[
+  let g:VM_mouse_mappings = 1
+]], false)
+
+-- Multi-cursor keymaps using vim.keymap.set
+vim.keymap.set("n", "<C-d>", "<Plug>(VM-Find-Under)", { noremap = true, silent = true, desc = "Find next occurrence (multi-cursor)" })
+vim.keymap.set("n", "<C-S-d>", "<Plug>(VM-Select-All)", { noremap = true, silent = true, desc = "Select all occurrences (multi-cursor)" })
+vim.keymap.set("n", "<A-j>", "<Plug>(VM-Add-Cursor-Down)", { noremap = true, silent = true, desc = "Add cursor down" })
+vim.keymap.set("n", "<A-k>", "<Plug>(VM-Add-Cursor-Up)", { noremap = true, silent = true, desc = "Add cursor up" })
+-- vim.keymap.set("n", "q", "<Plug>(VM-Skip-Region)", { noremap = true, silent = true, desc = "Skip match" })
+-- vim.keymap.set("n", "Q", "<Plug>(VM-Remove-Region)", { noremap = true, silent = true, desc = "Remove last cursor" })
 
 -- Toggle diagnostic view
 vim.keymap.set("n", "<Leader>ud", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle [D]iagnostics" })
+
+-- Window resizing
+vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
+vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
