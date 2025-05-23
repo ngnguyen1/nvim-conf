@@ -24,6 +24,7 @@ return {
 
       -- Set <C-i> to accept line
       keymap("i", "<C-i>", "<Plug>(copilot-accept-line)", opts)
+      keymap("i", "<C-w>", "<Plug>(copilot-accept-word)", opts)
 
       -- Set <C-j> to next suggestion, <C-k> to previous suggestion, <C-l> to suggest
       keymap("i", "<C-j>", "<Plug>(copilot-next)", opts)
