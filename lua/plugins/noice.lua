@@ -1,0 +1,59 @@
+return {
+  -- "folke/noice.nvim",
+  -- dependencies = {
+  --   "MunifTanjim/nui.nvim",
+  --   "rcarriga/nvim-notify" -- optional, for fancy notifications
+  -- },
+  -- config = function()
+  --   require("noice").setup({
+  --     routes = {
+  --       -- {
+  --       --   filter = {
+  --       --     event = "msg_show",
+  --       --     min_height = 5, -- get messages with at least 2 lines
+  --       --   },
+  --       --   view = "popup",
+  --       -- },
+  --     },
+  --     views = {
+  --       -- popup = {
+  --       --   border = {
+  --       --     style = "rounded",
+  --       --   },
+  --       --   position = "50%",
+  --       --   size = {
+  --       --     width = "80%",
+  --       --     height = "60%",
+  --       --   },
+  --       -- },
+  --     },
+  --     cmdline = {
+  --       -- enabled = true,
+  --       -- view = "cmdline_popup", -- cmdline_popup, cmdline
+  --       -- opts = {
+  --       --   position = {
+  --       --     row = "50%",
+  --       --     col = "50%",
+  --       --   },
+  --       -- },
+  --       -- format = {
+  --       --   cmdline = { pattern = "^:", icon = "", lang = "vim" },
+  --       -- },
+  --     },
+  --     messages = {
+  --       -- enabled = true,  -- show messages in popup
+  --       -- view = "notify", -- mini, notify, popup, split
+  --     },
+  --     popupmenu = {
+  --       enabled = true,  -- improve completion menu
+  --     },
+  --     lsp = {
+  --       progress = { enabled = true },
+  --     },
+  --     presets = {},
+  --   })
+  --
+  --   -- Keymaps
+  -- end,
+}
+
