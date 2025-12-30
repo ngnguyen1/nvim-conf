@@ -17,7 +17,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    lazy = true,
+    lazy = false,
     priority = 1000,
     config = function()
       require("tokyonight").setup({
@@ -31,7 +31,7 @@ return {
           variables = {},
         },
       })
-      -- vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
@@ -43,7 +43,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
       require("catppuccin").setup({
@@ -55,7 +55,7 @@ return {
           notify = false,
         }
       })
-      vim.cmd.colorscheme("catppuccin-mocha")
+      -- vim.cmd.colorscheme("catppuccin-mocha")
     end,
   }
 }
