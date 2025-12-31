@@ -21,13 +21,6 @@ keymap({ 't', 'i' }, '<c-j>', '<C-\\><C-n><C-w>j')
 keymap({ 't', 'i' }, '<c-k>', '<C-\\><C-n><C-w>k')
 keymap({ 't', 'i' }, '<c-l>', '<C-\\><C-n><C-w>l')
 
--- -- Move line up/down in Normal Mode (VSCode style: Alt+Up, Alt+Down)
--- keymap("n", "J", ":m .+1<CR>==", { noremap = true, silent = true })
--- keymap("n", "K", ":m .-2<CR>==", { noremap = true, silent = true })
--- move line up/down in Visual Mode (VSCode style: Alt+Up, Alt+Down)
--- keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
--- keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-
 -- Use Alt+j/k for moving lines (more common pattern)
 keymap('n', '<M-j>', ':m .+1<CR>==', { desc = 'Move line down', silent = true })
 keymap('n', '<M-k>', ':m .-2<CR>==', { desc = 'Move line up', silent = true })
@@ -38,14 +31,6 @@ keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up', silent = 
 keymap("i", "<C-BS>", "<C-w>", { noremap = true, silent = true })
 keymap("x", "<C-BS>", "<C-w>", { noremap = true, silent = true })
 keymap("i", "<M-BS>", "<C-w>", { noremap = true, silent = true })
-
--- -- Move cursor by words with Alt+Left/Right in insert mode
--- keymap('i', '<M-b>', '<C-o>b', { desc = 'Back word', noremap = true, silent = true })
--- keymap('n', '<M-b>', 'b', { desc = 'Back word', noremap = true, silent = true })
--- keymap('i', '<M-f>', '<C-o>w', { desc = 'Forward word', noremap = true, silent = true })
--- keymap('n', '<M-f>', 'w', { desc = 'Forward word', noremap = true, silent = true })
--- keymap('i', '<M-d>', '<C-o>dw', { desc = 'Delete word forward', noremap = true, silent = true })
--- keymap('n', '<M-d>', 'dw', { desc = 'Delete word forward', noremap = true, silent = true })
 
 -- Trim trailing spaces
 keymap("n", "<leader>ts", function()
