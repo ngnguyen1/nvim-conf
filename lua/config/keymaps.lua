@@ -53,5 +53,17 @@ keymap("n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" })
 -- Resize window using <shift> arrow keys
 keymap("n", "<S-Up>", "<cmd>resize +2<CR>")
 keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
-keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
-keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
+keymap("n", "<S-Left>", function()
+  if vim.fn.winnr() == vim.fn.winnr('l') then
+    vim.cmd("vertical resize +2")
+  else
+    vim.cmd("vertical resize -2")
+  end
+end)
+keymap("n", "<S-Right>", function()
+  if vim.fn.winnr() == vim.fn.winnr('l') then
+    vim.cmd("vertical resize -2")
+  else
+    vim.cmd("vertical resize +2")
+  end
+end)
