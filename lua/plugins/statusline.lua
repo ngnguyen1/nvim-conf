@@ -4,14 +4,6 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function()
-      local function copilot_status()
-        if vim.fn["copilot#Enabled"]() == 1 then
-          return ""
-        else
-          return ""
-        end
-      end
-
       require("lualine").setup({
         options = {
           icons_enabled = true,
@@ -85,9 +77,6 @@ return {
               "filetype",
               icon_only = true,
             },
-            {
-              copilot_status,
-            }
           },
           lualine_z = {
             {
@@ -111,4 +100,3 @@ return {
     end,
   },
 }
-

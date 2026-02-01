@@ -25,12 +25,10 @@ return {
     })
 
     wk.add({
-      { "<leader>a", group = "AI" },
       { "<leader>b", group = "Buffers" },
       { "<leader>f", group = "File", icon = { icon = "󰈙 " } },
       { "<leader>g", group = "Git" },
       { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
-      -- NEW: surround & autopairs groups
       { "<leader>s", group = "Surround" },
       { "<leader>sp", group = "Pairs / Autopairs" },
     })

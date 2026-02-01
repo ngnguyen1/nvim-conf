@@ -1,87 +1,6 @@
--- Complete nvim-cmp + Copilot + Snippets + Icons Setup
+-- nvim-cmp + Snippets + Icons Setup
 
 return {
-  -----------------------------------------------------------
-  -- Copilot Core
-  -----------------------------------------------------------
-  {
-    "github/copilot.vim",
-    event = "InsertEnter",
-    config = function()
-      -- Enable copilot suggestions
-      vim.g.copilot_no_tab_map = true -- disable default <Tab>
-
-      -- Auto-trigger suggestions (closest equivalent)
-      vim.g.copilot_assume_mapped = true
-
-      -- Filetype rules
-      vim.g.copilot_filetypes = {
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ["."] = false,
-      }
-
-      local keymap = vim.keymap.set
-
-      -- Accept whole suggestion
-      keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', {
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot Accept"
-      })
-
-      -- Accept word
-      keymap("i", "<M-f>", 'copilot#AcceptWord()', {
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot Accept Word"
-      })
-
-      -- Accept line
-      keymap("i", "<M-l>", 'copilot#AcceptLine()', {
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot Accept Line"
-      })
-
-      -- Next suggestion
-      keymap("i", "<M-]>", 'copilot#Next()', {
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot Next"
-      })
-
-      -- Previous suggestion
-      keymap("i", "<M-[>", 'copilot#Previous()', {
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot Previous"
-      })
-
-      -- Dismiss
-      keymap("i", "<C-e>", 'copilot#Dismiss()', {
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot Dismiss"
-      })
-    end,
-  },
-
-  -----------------------------------------------------------
-  -- Copilot CMP Integration
-  -----------------------------------------------------------
-  {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
-
   -----------------------------------------------------------
   -- nvim-cmp Core
   -----------------------------------------------------------
@@ -95,7 +14,6 @@ return {
       "hrsh7th/cmp-buffer",       -- buffer words
       "hrsh7th/cmp-path",         -- path completion
       "onsails/lspkind.nvim",     -- icons
-      "zbirenbaum/copilot-cmp",   -- copilot completion
     },
 
     config = function()
@@ -140,20 +58,16 @@ return {
             mode = "symbol_text",
             maxwidth = 50,
             ellipsis_char = "...",
-            symbol_map = { Copilot = "" },
           }),
         },
 
-        -- Do not include copilot to the source
-        -- to avoid duplicate suggestions
         sources = cmp.config.sources({
+          { name = "path" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
-          { name = "path" },
         }),
       })
     end,
   },
 }
-
