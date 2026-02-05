@@ -19,9 +19,7 @@ return {
         ensure_installed = {
           "lua_ls",        -- Lua
           "ts_ls",         -- TypeScript/JavaScript
-          "rust_analyzer", -- Rust (used by rust-tools.nvim)
           -- "pyright",    -- Python
-          -- "codelldb",   -- optional: Rust debugging
         },
         automatic_installation = true, -- auto-install other servers you configure
       })
@@ -30,7 +28,7 @@ return {
   -- LSP Config: configurations for LSP servers
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lsp" },
+    -- dependencies = { "hrsh7th/cmp-nvim-lsp" },
     config = function()
       -- Basic LSP keymaps (optional but very useful)
       local on_attach = function(_, bufnr)

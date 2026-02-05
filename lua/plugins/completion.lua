@@ -21,10 +21,8 @@ return {
       local luasnip = require("luasnip")
       local lspkind = require("lspkind")
 
-      -- load friendly snippets (exclude Rust since rust-analyzer provides completions)
-      require("luasnip.loaders.from_vscode").lazy_load({
-        exclude = { "rust" },
-      })
+      -- load friendly snippets
+      require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
         snippet = {
@@ -64,9 +62,9 @@ return {
         },
 
         sources = cmp.config.sources({
-          { name = "path" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
+          { name = "path" },
           { name = "buffer" },
         }),
       })

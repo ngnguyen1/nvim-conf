@@ -18,7 +18,6 @@ A modern, minimal Neovim configuration built with Lua and managed by [lazy.nvim]
 - [Plugin Keymaps](#plugin-keymaps)
   - [Telescope (Fuzzy Finder)](#telescope-fuzzy-finder)
   - [LSP (Language Server Protocol)](#lsp-language-server-protocol)
-  - [Rust](#rust)
   - [nvim-cmp (Completion)](#nvim-cmp-completion)
   - [Git (Fugitive & LazyGit)](#git-fugitive--lazygit)
   - [Yanky (Yank History)](#yanky-yank-history)
@@ -63,7 +62,6 @@ Open Neovim and lazy.nvim will automatically install all plugins.
         ├── git.lua          # Git integrations
         ├── init.lua         # Plugin loader
         ├── lsp.lua          # LSP configuration
-        ├── rust.lua         # Rust (rustaceanvim, rust-analyzer)
         ├── noice.lua        # UI enhancements (disabled)
         ├── statusline.lua   # Lualine statusline
         ├── telescope.lua    # Fuzzy finder
@@ -291,46 +289,6 @@ These keymaps are available when an LSP server is attached to the buffer.
 **Installed LSP Servers (via Mason):**
 - `lua_ls` - Lua language server
 - `ts_ls` - TypeScript/JavaScript language server
-- `rust_analyzer` - Rust (managed by rustaceanvim)
-
----
-
-### Rust
-
-Rust support is provided by **rustaceanvim** and **rust-analyzer** (installed via Mason). Loaded only in Rust buffers (`ft = "rust"`).
-
-#### Features
-- **Inlay hints** – type and parameter hints, chaining hints, closing brace hints (auto-enabled)
-- **Hover actions** – run/debug/test from the hover popup when available
-- **rust-analyzer settings** – Clippy for `check`, proc macros, cargo build scripts
-- **Runnables/Debuggables** – quickly run or debug Rust targets
-- **Optional DAP** – if **codelldb** (Mason) and **nvim-dap** are installed, Rust debugging is configured automatically
-
-#### Requirements
-- [rustup](https://rustup.rs) with `rustfmt` and `clippy`:  
-  `rustup component add rustfmt clippy`
-- First time: open a `.rs` file (or run `:Lazy`) so Mason can install `rust_analyzer`
-
-#### Rust keymaps (in Rust buffers)
-
-| Key | Mode | Description |
-|-----|------|-------------|
-| `gd` | Normal | Go to definition |
-| `gi` | Normal | Go to implementation |
-| `gr` | Normal | Show references |
-| `K` | Normal | Show hover documentation |
-| `<leader>rn` | Normal | Rename symbol |
-| `<leader>ca` | Normal | Code actions |
-| `<leader>rd` | Normal | Rust debuggables |
-| `<leader>rr` | Normal | Rust runnables |
-| `<leader>re` | Normal | Explain error under cursor |
-| `<leader>rc` | Normal | Open Cargo.toml |
-
-Completion in Rust uses **nvim-cmp** with LSP (same as other languages).
-
-#### Optional: debugging
-- Install **codelldb** via `:Mason`
-- Add **nvim-dap** to your plugins if you want breakpoints and step-through debugging
 
 ---
 
@@ -623,7 +581,6 @@ To switch colorscheme, use `:colorscheme <name>` or modify `colorscheme.lua`.
 - **nvim-lspconfig** - LSP configuration
 - **mason.nvim** - LSP/DAP/Formatter installer
 - **mason-lspconfig.nvim** - Bridge between Mason and lspconfig
-- **rustaceanvim** - Rust (rust-analyzer, inlay hints, runnables, debuggables, optional DAP)
 
 ### Git
 - **vim-fugitive** - Git commands
@@ -637,7 +594,7 @@ To switch colorscheme, use `:colorscheme <name>` or modify `colorscheme.lua`.
 - **nvim-treesitter** - Syntax highlighting and parsing
 
 **Treesitter Parsers Installed:**
-lua, javascript, typescript, rust, python, vue, html, css, json, bash, yaml, markdown, markdown_inline, vimdoc, query, xml, terraform, hcl, groovy
+lua, javascript, typescript, python, vue, html, css, json, bash, yaml, markdown, markdown_inline, vimdoc, query, xml, terraform, hcl, groovy
 
 ---
 
