@@ -17,10 +17,11 @@ return {
       require("mason-lspconfig").setup({
         -- List of servers to automatically install
         ensure_installed = {
-          "lua_ls", -- Lua
-          "ts_ls", -- TypeScript/JavaScript
-          -- "pyright",     -- Python
-          -- Add more servers as needed
+          "lua_ls",        -- Lua
+          "ts_ls",         -- TypeScript/JavaScript
+          "rust_analyzer", -- Rust (used by rust-tools.nvim)
+          -- "pyright",    -- Python
+          -- "codelldb",   -- optional: Rust debugging
         },
         automatic_installation = true, -- auto-install other servers you configure
       })
@@ -29,6 +30,7 @@ return {
   -- LSP Config: configurations for LSP servers
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "hrsh7th/cmp-nvim-lsp" },
     config = function()
       -- Basic LSP keymaps (optional but very useful)
       local on_attach = function(_, bufnr)
@@ -41,10 +43,7 @@ return {
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
       end
 
-      -- local lspconfig = require("lspconfig")
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- TODO: nvim-cmp
-      -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- TypeScript/JavaScript (ts_ls)
       vim.lsp.config("ts_ls", {

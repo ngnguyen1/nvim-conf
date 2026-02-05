@@ -8,6 +8,7 @@ return {
         "lua",
         "javascript",
         "typescript",
+        "rust",
         "python",
         "vue",
         "html",
