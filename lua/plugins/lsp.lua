@@ -1,5 +1,6 @@
 return {
-  -- Mason: package manager for LSP servers / DAP / formatter / linter installer
+  -- Mason: package manager for LSP servers / DAP / formatter / linter
+  -- installer
   {
     "williamboman/mason.nvim",
     config = function()
@@ -14,23 +15,28 @@ return {
       "neovim/nvim-lspconfig"
     },
     config = function()
-      require("mason-lspconfig").setup({
+      local mlsp = require("mason-lspconfig")
+
+      mlsp.setup({
         -- List of servers to automatically install
         ensure_installed = {
           "lua_ls",        -- Lua
           "ts_ls",         -- TypeScript/JavaScript
+          "rust_analyzer", -- Rust (handled by rustaceanvim)
           -- "pyright",    -- Python
         },
-        automatic_installation = true, -- auto-install other servers you configure
+        -- only enable lua_ls, ts_ls. Do not enable rust_analyzer because it
+        -- is handled by rustaceanvim
+        automatic_enable = { "lua_ls", "ts_ls" },
       })
     end,
   },
   -- LSP Config: configurations for LSP servers
   {
     "neovim/nvim-lspconfig",
-    -- dependencies = { "hrsh7th/cmp-nvim-lsp" },
+    dependencies = { "hrsh7th/cmp-nvim-lsp" },
     config = function()
-      -- Basic LSP keymaps (optional but very useful)
+      -- Basic LSP keymaps
       local on_attach = function(_, bufnr)
         local opts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -47,10 +53,12 @@ return {
       vim.lsp.config("ts_ls", {
         on_attach = on_attach,
         capabilities = capabilities,
-        -- Add ts-specific settings here if needed
-        -- settings = {
-        --   tsserver = { ... }
-        -- },
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
       })
 
       -- Lua (lua_ls)

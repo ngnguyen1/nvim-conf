@@ -4,6 +4,7 @@ local keymap = vim.keymap.set
 
 -- Use <Esc> to exit terminal mode
 keymap('t', '<Esc>', '<C-\\><C-n>')
+keymap("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
